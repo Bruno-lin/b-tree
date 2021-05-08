@@ -239,6 +239,26 @@ public class TreeNode implements Comparable<Object>{
         Collections.sort(children);
     }
 
+    /**
+     * 搜索关键字并返回所在节点
+     * @param key
+     * @return
+     */
+    TreeNode search(int key) {
+        int i = 0;
+
+        while (i < this.keys.size() && key > this.keys.get(i)) {
+            i++;
+        }
+        if (i < this.keys.size() && keys.get(i) == key) {
+            return this;
+        }
+
+        if (isLeaf) {
+            return null;
+        }
+        return children.get(i).search(key);
+    }
 
     @Override
     public int compareTo(Object o) {
